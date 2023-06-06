@@ -95,10 +95,12 @@
   </div>
   <div class="modal-body">
     <img [src]="this.url" alt="" height="200px" width="300px">
-    <p>My name is : {{loginForm.value.name}} </p>
-    <p>My phone number is : {{loginForm.value.phone}}</p>
-    <p>My email is {{loginForm.value.email}}</p>
-    <p>My Password is {{loginForm.value.password}}</p>
+    <p> Name: {{loginForm.value.name}} </p>
+    <p> Phone Number: {{loginForm.value.phone}}</p>
+    <p>Email: {{loginForm.value.email}}</p>
+    <p>Password: {{loginForm.value.password}}</p>
+    <p>Technology: <span *ngFor="let data of checkBoxData">{{data+" "}}</span></p>
+     
    
   </div>
  
