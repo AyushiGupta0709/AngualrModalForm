@@ -1,0 +1,13 @@
+.container{
+    margin: 30px;
+    padding: 30px;
+    background-color: rgb(208, 208, 234);
+}
+.form-group{
+    padding: 10px;
+    margin: 10px;
+}
+.gender{
+    padding:10px;
+    margin: 10px;
+}

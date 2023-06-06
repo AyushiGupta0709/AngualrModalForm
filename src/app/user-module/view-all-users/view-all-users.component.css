@@ -1,0 +1,16 @@
+body{
+  background-color: rgb(12, 103, 155);
+}
+
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  th, td {
+    background-color: #8da9a6;
+  }
+  th{
+    margin: 5px;
+  }
+  

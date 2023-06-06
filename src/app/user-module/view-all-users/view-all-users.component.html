@@ -1,0 +1,29 @@
+<table class="tableContainer">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Password</th>
+            <th>Technology</th>
+            <th>Image</th>
+        </tr>
+
+    </thead>
+     <tbody>
+      
+        <tr>
+       <td>{{data.name}}</td>   
+       <td>{{data.email}}</td>
+       <td>{{data.phone}}</td>
+       <td>{{data.password}}</td>
+        <td >
+            <tr  *ngFor= "let data of this.data.checkBoxData">{{data}}</tr>
+        </td>
+       <td><img src="{{data.image}}" alt="" width="300px" height="200px"></td>
+       
+    </tr>
+   </tbody>
+   
+   
+</table>
