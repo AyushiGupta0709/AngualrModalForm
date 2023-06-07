@@ -81,7 +81,7 @@
       <input type="file" (change)= "chooseFile($event)" >
     </div>
     
-    <button  type="submit" class="btn btn-primary"  (click)= "open()" >Preview</button>
+    <button  type="submit" class="btn btn-primary" [disabled]= "loginForm.invalid" (click)= "open()" >Preview</button>
   </form>
 
 

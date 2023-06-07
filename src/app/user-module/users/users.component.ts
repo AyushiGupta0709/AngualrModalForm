@@ -11,10 +11,10 @@ import { PreviewModelComponent } from '../preview-model/preview-model.component'
 export class UsersComponent {
 
   loginForm= new FormGroup({
-    name:new FormControl('Ayushi',[Validators.required,Validators.minLength(5),Validators.maxLength(20)]),
-    email:new FormControl('ayuishi@gmail.com',[Validators.required,Validators.email]),
-    phone:new FormControl('9876543210',[Validators.required,Validators.maxLength(10)]),
-    password : new FormControl('12345',[Validators.required,Validators.minLength(5),Validators.maxLength(20)]),
+    name:new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(20),Validators.pattern("^[a-zA-Z]*$")]),
+    email:new FormControl('',[Validators.required,Validators.email,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")]),
+    phone:new FormControl('',[Validators.required,Validators.maxLength(10),Validators.pattern("^[0-9]{10}$")]),
+    password : new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(20)]),
     technology: new FormControl(''),
   
   }
@@ -111,7 +111,7 @@ checkBox5(event:any){
     
   open() {
     if(!this.loginForm.valid) {
-      return;
+      // return;
     }
 
     this.formService.formData = this.loginForm.value;
