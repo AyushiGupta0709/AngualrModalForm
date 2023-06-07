@@ -81,12 +81,12 @@
       <input type="file" (change)= "chooseFile($event)" >
     </div>
     
-    <button  type="submit" class="btn btn-primary" (click)="open(mymodal)">Preview</button>
+    <button  type="submit" class="btn btn-primary"  (click)= "open()" >Preview</button>
   </form>
 
 
 </div>
-<ng-template #mymodal let-modal>
+<!-- <ng-template #mymodal let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -107,4 +107,4 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark"  (click)="modal.dismiss('Cross click')" > <a class="nav-link" routerLink="../view">Save Data</a> </button>
   </div>
-</ng-template>
+</ng-template> -->

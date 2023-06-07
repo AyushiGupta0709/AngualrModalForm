@@ -11,9 +11,8 @@ export class ViewAllUsersComponent{
 
 
 arr:any=[];
-  data:any;
-  // image:any=[];
-  // check:any=[];
+data:any;
+
   constructor(private formService:NewServiceService){
     
    console.log(this.formService.formData.name);

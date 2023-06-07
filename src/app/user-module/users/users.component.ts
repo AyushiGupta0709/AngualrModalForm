@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal,NgbModule, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {NewServiceService} from '../services/new-service.service';
+import { PreviewModelComponent } from '../preview-model/preview-model.component';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -11,43 +12,25 @@ export class UsersComponent {
 
   loginForm= new FormGroup({
     name:new FormControl('Ayushi',[Validators.required,Validators.minLength(5),Validators.maxLength(20)]),
-    email:new FormControl('ayushi@gmail.com',[Validators.required,Validators.email]),
-    phone:new FormControl('8743874378',[Validators.required,Validators.maxLength(10)]),
-    password : new FormControl('123',[Validators.required,Validators.minLength(5),Validators.maxLength(20)]),
-    technology: new FormControl('java'),
-    // image:new FormControl('')
-  
-    // category: new FormControl('general'),
-  
+    email:new FormControl('ayuishi@gmail.com',[Validators.required,Validators.email]),
+    phone:new FormControl('9876543210',[Validators.required,Validators.maxLength(10)]),
+    password : new FormControl('12345',[Validators.required,Validators.minLength(5),Validators.maxLength(20)]),
+    technology: new FormControl(''),
   
   }
 
   );
   url:any;
+  modalRef: any;
+  modelRef: any;
   chooseFile(event:any){
-  //   if(event.target.files){
-  //     var reader=new FileReader();
-  //     reader.readAsDataURL(event.target.files[0]);
-  //     reader.onload=(event:any)=>{
-  //       this.url=event.target.result;
-  //       console.log(this.url);
-  //     }
-  //   }
-
-
-
-  // }
-
-
   if(!event.target.files[0] || event.target.files[0].length == 0) {
-    // this.msg = 'You must select an image';
     return;
   }
   
   var mimeType = event.target.files[0].type;
   
   if (mimeType.match(/image\/*/) == null) {
-    // this.msg = "Only images are supported";
     return;
   }
   
@@ -55,7 +38,6 @@ export class UsersComponent {
   reader.readAsDataURL(event.target.files[0]);
   
   reader.onload = (_event) => {
-    // this.msg = "";
     this.url = reader.result; 
     this.formService.image=this.url;
   }
@@ -101,16 +83,6 @@ checkBox5(event:any){
 
 }
 
-
-
-
-
-
-
-
-
-
-  // NewServiceService: any;
   loginUser(){
     this.formService.formData=this.loginForm.value;
     this.formService.checkBoxData=this.checkBoxData;
@@ -128,15 +100,6 @@ checkBox5(event:any){
   get password(){
     return this.loginForm.get('password')
   }
-  
-  // get image(){
-  //   return this.loginForm.get('image');
-  // }
-
-
-
-
-
 
   closeResult: string | undefined;
   
@@ -146,23 +109,33 @@ checkBox5(event:any){
   }
 
     
-  open(content:any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-  
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
+  open() {
+    if(!this.loginForm.valid) {
+      return;
     }
+
+    this.formService.formData = this.loginForm.value;
+
+    const modelRef = this.modalService.open(PreviewModelComponent);
+    modelRef.componentInstance.name =  this.loginForm.value;
+    modelRef.componentInstance.image = this.formService.image;
+    modelRef.componentInstance.checkBoxData=this.checkBoxData;
+
+
   }
+  // close() {
+  //   this.modelRef.close()
+  // }
+  
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return  `with: ${reason}`;
+  //   }
+  // }
 
 
 }
